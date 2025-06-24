@@ -36,26 +36,30 @@ const GradeCard = ({
   };
 
   return (
-    <Card className="hover:shadow-md transition-shadow">
-      <CardHeader className="pb-3">
+    <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-0 shadow-md bg-white/70 backdrop-blur-sm">
+      <CardHeader className="pb-4">
         <div className="flex justify-between items-start">
-          <CardTitle className="text-lg font-semibold">{subject}</CardTitle>
-          <div className="flex items-center space-x-1">
+          <div className="space-y-1">
+            <CardTitle className="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+              {subject}
+            </CardTitle>
+            <p className="text-sm text-slate-600">{teacher}</p>
+          </div>
+          <div className="flex items-center space-x-2 bg-slate-50/50 rounded-full px-3 py-2">
             {getTrendIcon()}
-            <span className="text-2xl font-bold text-primary">
+            <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               {average.toFixed(1)}
             </span>
           </div>
         </div>
-        <p className="text-sm text-gray-600">{teacher}</p>
       </CardHeader>
 
       <CardContent>
-        <div className="flex flex-wrap gap-2 mb-3">
+        <div className="flex flex-wrap gap-2 mb-4">
           {grades.map((grade, index) => (
             <Badge
               key={index}
-              className={getGradeColor(grade)}
+              className={`${getGradeColor(grade)} hover:scale-110 transition-transform cursor-pointer font-semibold`}
               variant="secondary"
             >
               {grade}
@@ -63,9 +67,9 @@ const GradeCard = ({
           ))}
         </div>
 
-        <div className="w-full bg-gray-200 rounded-full h-2">
+        <div className="w-full bg-slate-200 rounded-full h-3 overflow-hidden">
           <div
-            className="bg-primary h-2 rounded-full transition-all"
+            className="bg-gradient-to-r from-blue-500 to-purple-600 h-3 rounded-full transition-all duration-700 shadow-sm"
             style={{ width: `${(average / 5) * 100}%` }}
           />
         </div>

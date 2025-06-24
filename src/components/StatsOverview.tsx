@@ -41,23 +41,21 @@ const StatCard = ({
   };
 
   return (
-    <Card>
+    <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-0 shadow-md bg-white/70 backdrop-blur-sm">
       <CardContent className="p-6">
         <div className="flex items-center justify-between">
-          <div>
-            <p className="text-sm font-medium text-gray-600">{title}</p>
-            <p className="text-3xl font-bold text-gray-900">{value}</p>
-            <div
-              className={`flex items-center space-x-1 mt-1 ${getTrendColor()}`}
-            >
+          <div className="space-y-2">
+            <p className="text-sm font-medium text-slate-600">{title}</p>
+            <p className="text-3xl font-bold text-slate-900">{value}</p>
+            <div className={`flex items-center space-x-1 ${getTrendColor()}`}>
               <Icon name={getTrendIcon() as any} size={16} />
               <span className="text-sm font-medium">{change}</span>
             </div>
           </div>
           <div
-            className={`w-12 h-12 ${color} rounded-lg flex items-center justify-center`}
+            className={`w-14 h-14 ${color} rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}
           >
-            <Icon name={icon as any} className="text-white" size={24} />
+            <Icon name={icon as any} className="text-white" size={26} />
           </div>
         </div>
       </CardContent>

@@ -85,52 +85,76 @@ const ScheduleTable = () => {
   };
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center space-x-2">
-          <Icon name="Calendar" className="text-primary" />
-          <span>Расписание на сегодня</span>
+    <Card className="shadow-lg border-0 bg-white/70 backdrop-blur-sm">
+      <CardHeader className="bg-gradient-to-r from-slate-50 to-blue-50/30 rounded-t-lg">
+        <CardTitle className="flex items-center space-x-3">
+          <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+            <Icon name="Calendar" className="text-white" size={18} />
+          </div>
+          <span className="text-slate-900 font-bold">
+            Расписание на сегодня
+          </span>
         </CardTitle>
       </CardHeader>
 
-      <CardContent>
+      <CardContent className="p-0">
         <Table>
           <TableHeader>
-            <TableRow>
-              <TableHead>Время</TableHead>
-              <TableHead>Предмет</TableHead>
-              <TableHead>Преподаватель</TableHead>
-              <TableHead>Кабинет</TableHead>
-              <TableHead>Статус</TableHead>
+            <TableRow className="border-slate-200/50">
+              <TableHead className="font-semibold text-slate-700">
+                Время
+              </TableHead>
+              <TableHead className="font-semibold text-slate-700">
+                Предмет
+              </TableHead>
+              <TableHead className="font-semibold text-slate-700">
+                Преподаватель
+              </TableHead>
+              <TableHead className="font-semibold text-slate-700">
+                Кабинет
+              </TableHead>
+              <TableHead className="font-semibold text-slate-700">
+                Статус
+              </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {scheduleData.map((item, index) => (
               <TableRow
                 key={index}
-                className={`${item.type === "break" ? "bg-gray-50" : ""} ${
+                className={`${item.type === "break" ? "bg-slate-50/30" : "hover:bg-slate-50/50"} ${
                   isCurrentLesson(item.time)
-                    ? "bg-primary/10 border-l-4 border-primary"
+                    ? "bg-gradient-to-r from-blue-50 to-purple-50/30 border-l-4 border-gradient-to-b from-blue-500 to-purple-600 shadow-sm"
                     : ""
-                }`}
+                } transition-colors border-slate-200/30`}
               >
-                <TableCell className="font-medium">{item.time}</TableCell>
+                <TableCell className="font-medium text-slate-900">
+                  {item.time}
+                </TableCell>
                 <TableCell>
                   {item.type === "break" ? (
-                    <span className="text-gray-500 italic">{item.subject}</span>
+                    <span className="text-slate-500 italic">
+                      {item.subject}
+                    </span>
                   ) : (
-                    <span className="font-medium">{item.subject}</span>
+                    <span className="font-semibold text-slate-900">
+                      {item.subject}
+                    </span>
                   )}
                 </TableCell>
-                <TableCell>{item.teacher}</TableCell>
-                <TableCell>{item.room}</TableCell>
+                <TableCell className="text-slate-700">{item.teacher}</TableCell>
+                <TableCell className="text-slate-700">{item.room}</TableCell>
                 <TableCell>
                   {item.type === "lesson" && (
                     <Badge
                       variant={
                         isCurrentLesson(item.time) ? "default" : "secondary"
                       }
-                      className={isCurrentLesson(item.time) ? "bg-primary" : ""}
+                      className={
+                        isCurrentLesson(item.time)
+                          ? "bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 shadow-md"
+                          : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                      }
                     >
                       {isCurrentLesson(item.time) ? "Сейчас" : "Урок"}
                     </Badge>
